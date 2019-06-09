@@ -1,7 +1,7 @@
 from db import db
-from flask_sqlalchemy import SQLAlchemy
 
-class User(db.Model):
+
+class UserModel(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -23,5 +23,3 @@ class User(db.Model):
     @classmethod
     def find_by_id(cls, id):
         return cls.query.filter_by(id=_id).first()
-
-    

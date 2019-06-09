@@ -3,12 +3,15 @@ from flask_restful import Api, Resource
 from flask_jwt import JWT
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
 @app.before_first_request
 def create_tables():
     db.create_all()
 
+# TODO: need to implement authenticate and identity functions in security.py file
 jwt = JWT(app, authenticate, identity)
 
 if __name__ == "__main__":
